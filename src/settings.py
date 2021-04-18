@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -66,14 +67,14 @@ WSGI_APPLICATION = 'src.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dart_blog',
-        'PASSWORD' : 'ffc',
-        'USER' : 'ilya',
-        'HOST' : '127.0.0.1',
-        'PORT' : '5433',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'dart_blog',
+        # 'PASSWORD' : 'ffc',
+        # 'USER' : 'ilya',
+        # 'HOST' : '127.0.0.1',
+        # 'PORT' : '5433',
     }
 }
 
@@ -119,6 +120,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static') # куда загружаєтьс
 STATICFILES_DIRS = [ # список папок звідки береться статика
     os.path.join(BASE_DIR, 'src/static') 
 ]
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
